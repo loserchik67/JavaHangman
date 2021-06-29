@@ -1,3 +1,5 @@
+import java.io.*;
+import java.util.*;
 
 public class Game {
 	private int maxTurns;
@@ -9,6 +11,35 @@ public class Game {
 		maxTurns = 7;
 		win = false;
 		word = "testing";
+	}
+	
+	public void setWord() throws IOException {
+		BufferedReader reader = new BufferedReader(new FileReader("word_list.txt"));
+		int lines = 0;
+		while(reader.readLine() != null) {
+			lines++;
+		}
+		reader.close();
+		
+		//populate array
+		String item = "";
+		Scanner inFile = new Scanner(new File("word_list.txt"));
+		List<String> wordList = new ArrayList<String>();
+		while(inFile.hasNext()) {
+			item = inFile.next();
+			wordList.add(item);
+		}
+		inFile.close();
+		String[] tempsArray = wordList.toArray(new String[0]);
+		
+		//get random word from array
+		Random rand = new Random();
+		int upperbound = lines;
+		int int_random = rand.nextInt(upperbound);
+		
+		String word = tempsArray[int_random];
+		
+		this.word = word;		
 	}
 	
 	//make dashed word

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -39,7 +40,7 @@ public class Main {
 		return dashedWord;
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
 		int turn = 0;
 		char guess;
@@ -55,6 +56,7 @@ public class Main {
 		gameBoard.printTitle();
 		System.out.println();
 		Game game = new Game();
+		game.setWord();
 		game.setDashedWord();
 		
 		
@@ -100,15 +102,20 @@ public class Main {
 			//check for win
 			game.hasWon();
 			if(game.getWin()) {
-				System.out.println("You Win!!!");
+				System.out.println();
+				System.out.println("The word was: " + game.getWord());
+				System.out.println();
+				System.out.println("YOU WIN!!!");
 				break;
 			}
 		}
 		
 		if(!game.getWin()) {
 			gameBoard.printBoard(turn);
+			System.out.println();
 			System.out.println("The word was: " + game.getWord());
-			System.out.println("Game Over");
+			System.out.println();
+			System.out.println("GAME OVER :(");
 		}
 	}
 }
