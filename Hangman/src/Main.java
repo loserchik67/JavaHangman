@@ -7,6 +7,7 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		System.out.print("Enter you guess: ");
 		String stringGuess = sc.next();
+		stringGuess = stringGuess.toLowerCase();
 		char guess = stringGuess.charAt(0);
 		return guess;
 	}
